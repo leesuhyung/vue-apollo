@@ -1,0 +1,12 @@
+@function asset($path) {
+    @return url("~@/assets/#{$path}");
+}
+
+body {
+    background-image: asset('bg-blue.jpg');
+    background-size: cover;
+}
+
+#inspire {
+    background: none;
+}

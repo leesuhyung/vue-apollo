@@ -1,0 +1,25 @@
+{
+  "name": "graphql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js --migration=false"
+  },
+  "dependencies": {
+    "apollo-server": "^2.9.14",
+    "apollo-server-express": "^2.9.14",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "lodash": "^4.17.15",
+    "mysql2": "^2.0.2",
+    "sequelize": "^5.21.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "^6.24.1"
+  }
+}
