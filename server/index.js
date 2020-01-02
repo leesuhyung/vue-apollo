@@ -25,7 +25,7 @@ const server = new ApolloServer({
 
 server.applyMiddleware({app, path: '/graphql'})
 
-let argv = process.argv[process.argv.length - 1];
+let argv = process.argv[process.argv.length - 1]
 let argvSplit = argv.split('=')
 let promise
 
@@ -37,13 +37,18 @@ if (argvSplit[0] === '--migration' && argvSplit[1] === 'true') {
         .then(() => {
             models.Team.bulkCreate(
                 _.times(10, () => ({
-                    name: faker.internet.userName()
+                    name: faker.internet.userName(),
                 }))
             ).then(() => {
+                const TRIBE_LIST = ['terran', 'zerg', 'protoss', 'random']
+                const TIER_LIST = ['triple', 'minor', 'major', 'challenger']
+
                 models.User.bulkCreate(
                     _.times(10, () => ({
                         name: `${faker.name.firstName()}${faker.random.number()}`,
-                        teamId: _.random(1, 10)
+                        tribe: _.sample(TRIBE_LIST),
+                        tier: _.sample(TIER_LIST),
+                        teamId: _.random(1, 10),
                     }))
                 )
             })

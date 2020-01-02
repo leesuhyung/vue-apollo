@@ -1,11 +1,11 @@
 <template>
     <v-row class="flex-column py-3 align-center justify-center">
-        <v-card-text class="text-center">
+        <v-card-text class="text-center" v-if="!$apollo.loading">
             <v-avatar class="mb-3 elevation-8 grey" size="88">
                 <v-img src="https://randomuser.me/api/portraits/lego/2.jpg"/>
             </v-avatar>
             <h2 class="headline mb-2">{{user.name}}</h2>
-            <span class="text--secondary">{{user.team.name}}</span>
+            <span class="text--secondary">{{user.team ? user.team.name : '무소속'}}</span>
         </v-card-text>
         <v-card-actions class="justify-center">
             <v-btn icon text color="pink">
@@ -19,10 +19,27 @@
 
     export default {
         data: () => ({
-            id: 1
+            users: [],
         }),
+        computed: {
+            user() {
+                return _.sample(this.users)
+            }
+        },
         apollo: {
-            user: {
+            users: gql`query {
+                users {
+                    id
+                    name
+                    team {
+                        id
+                        name
+                    }
+                    createdAt,
+                    updatedAt
+                }
+            }`,
+            /*user: {
                 query: gql`query user($id: ID!) {
                     user(id: $id) {
                         id
@@ -40,7 +57,7 @@
                         id: this.id
                     }
                 }
-            }
+            }*/
         }
     }
 </script>

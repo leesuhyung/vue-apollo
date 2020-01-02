@@ -1,4 +1,6 @@
 const user = (sequelize, DataTypes) => {
+    const TRIBE_LIST = ['terran', 'zerg', 'protoss', 'random']
+    const TIER_LIST = ['triple', 'minor', 'major', 'challenger']
     const User = sequelize.define('user', {
         id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
         teamId: {
@@ -24,6 +26,12 @@ const user = (sequelize, DataTypes) => {
                 },
                 len: [2, 20]
             }
+        },
+        tribe: {
+            type: DataTypes.ENUM(TRIBE_LIST)
+        },
+        tier: {
+            type: DataTypes.ENUM(TIER_LIST)
         },
         createdAt: {type: DataTypes.DATE},
         updatedAt: {type: DataTypes.DATE},

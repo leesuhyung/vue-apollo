@@ -15,6 +15,10 @@ const team = (sequelize, DataTypes) => {
                 len: [2, 20]
             }
         },
+        emblem: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         createdAt: {type: DataTypes.DATE},
         updatedAt: {type: DataTypes.DATE},
     }, {

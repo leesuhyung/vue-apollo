@@ -12,6 +12,8 @@ const typeDefs = gql`
     id: ID!
     team: Team
     name: String!
+    tribe: [Tribe]!
+    tier: [Tier]!
     createdAt: String
     updatedAt: String
   }
@@ -20,17 +22,32 @@ const typeDefs = gql`
     id: ID!
     users: [User]
     name: String!
+    emblem: String
     createdAt: String
     updatedAt: String
   }
 
   type Mutation {
-    createUser(name: String!, teamId: ID): User!
-    updateUser(id: ID!, name: String, teamId: ID): [Int!]!
+    createUser(name: String!, teamId: ID, tribe: Tribe!, tier: Tier!): User!
+    updateUser(id: ID!, name: String, teamId: ID, tribe: Tribe, tier: Tier): [Int!]!
     deleteUser(id: ID!): Int!
-    createTeam(name: String!): Team!
-    updateTeam(id: ID!, name: String!): [Int!]!
+    createTeam(name: String!, emblem: String): Team!
+    updateTeam(id: ID!, name: String!, emblem: String): [Int!]!
     deleteTeam(id: ID!): Int!
+  }
+  
+  enum Tribe {
+    terran
+    zerg
+    protoss
+    random
+  }
+  
+  enum Tier {
+    triple
+    minor
+    major
+    challenger
   }
 `
 

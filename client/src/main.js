@@ -5,8 +5,14 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import apolloProvider from './plugins/apollo-provider'
+import * as _ from 'lodash'
 
 Vue.config.productionTip = false
+Vue.mixin({
+    computed: {
+        _: () => _,
+    }
+})
 
 new Vue({
     router,

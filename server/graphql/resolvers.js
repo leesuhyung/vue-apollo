@@ -74,10 +74,11 @@ const resolvers = {
         deleteUser: async (_, {id}, {models}) => {
             return models.User.destroy({where: {id}})
         },
-        createTeam: async (_, {name}, {models}) => {
+        createTeam: async (_, {name, emblem}, {models}) => {
             try {
                 return await models.Team.create({
                     name,
+                    emblem
                 }, {
                     include: [{model: models.User}]
                 }).then(team => team.reload())
@@ -85,9 +86,10 @@ const resolvers = {
                 throw new Error(e)
             }
         },
-        updateTeam: async (_, {id, name}, {models}) => {
+        updateTeam: async (_, {id, name, emblem}, {models}) => {
             return models.Team.update({
                 name,
+                emblem,
             }, {
                 where: {id},
             });

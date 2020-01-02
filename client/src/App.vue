@@ -32,26 +32,10 @@
         components: {
             Profile
         },
-        name: 'App',
-        apollo: {
-            users: gql`query {
-                users {
-                    id
-                    name
-                    team {
-                        id
-                        name
-                    }
-                    createdAt,
-                    updatedAt
-                }
-            }`
-        },
         data: () => ({
             components: [
                 Profile
             ],
-            users: []
         }),
     }
 </script>
